@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0" xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>2954e1e7-72fb-40ed-9fd9-101906087fe8</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>ExcelGedcom</ProviderName>
+  <DefaultLocale>fr-FR</DefaultLocale>
+  <DisplayName DefaultValue="ExcelGedcom"/>
+  <Description DefaultValue="Un addin permettant de charger des données Gedcom dans Excel"/>
+  <IconUrl DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+  <HighResolutionIconUrl DefaultValue="https://localhost:3000/assets/icon-64.png"/>
+  <Hosts>
+    <Host Name="Workbook"/>
+  </Hosts>
+  <Requirements>
+  <Sets DefaultMinVersion="1.1">
+    <Set Name="SharedRuntime" MinVersion="1.1"/>
+  </Sets>
+</Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://localhost:3000/taskpane.html"/>
+  </DefaultSettings>
+  <Permissions>ReadWriteDocument</Permissions>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Workbook">
+        <Runtimes>
+          <Runtime resid="Taskpane.Url" lifetime="long" />
+        </Runtimes>
+        <DesktopFormFactor>
+          <FunctionFile resid="Taskpane.Url"/>
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+          <!-- Gedcom Tab -->
+            <CustomTab id="ExcelGedcom.Tab">
+              <!-- Gedcom Import / Export group -->
+              <Group id="ExcelGedcom.ImportExport">
+                <Label resid="ExcelGedcom.ImportExport.Label"/>
+                <Icon>
+                    <bt:Image size="16" resid="ImportIcon"/>
+                    <bt:Image size="32" resid="ImportIcon"/>
+                    <bt:Image size="80" resid="ImportIcon"/>
+                </Icon>
+
+                <!-- Import Button -->
+                <Control xsi:type="Button" id="ImportButton">
+                  <Label resid="ExcelGedcom.Import.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Import.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="ImportIcon"/>
+                    <bt:Image size="32" resid="ImportIcon"/>
+                    <bt:Image size="80" resid="ImportIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sayHello</FunctionName>
+                  </Action>
+                </Control>
+
+                <!-- Export Button -->
+                <Control xsi:type="Button" id="ExportButton">
+                  <Label resid="ExcelGedcom.Export.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Export.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="ExportIcon"/>
+                    <bt:Image size="32" resid="ExportIcon"/>
+                    <bt:Image size="80" resid="ExportIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Template Button -->
+                <Control xsi:type="Button" id="TemplateButton">
+                  <Label resid="ExcelGedcom.Template.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Template.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="EditIcon"/>
+                    <bt:Image size="32" resid="EditIcon"/>
+                    <bt:Image size="80" resid="EditIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+              </Group>
+              
+              <!-- Gedcom Genealogy Tools group -->
+              <Group id="ExcelGedcom.Tools">
+                <Label resid="ExcelGedcom.Tab.Tools.Label"/>
+                <Icon>
+                    <bt:Image size="16" resid="ImportIcon"/>
+                    <bt:Image size="32" resid="ImportIcon"/>
+                    <bt:Image size="80" resid="ImportIcon"/>
+                </Icon>
+                
+                <!-- Sosa Button -->
+                <Control xsi:type="Button" id="SosaButton">
+                  <Label resid="ExcelGedcom.Sosa.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Sosa.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="SosaIcon"/>
+                    <bt:Image size="32" resid="SosaIcon"/>
+                    <bt:Image size="80" resid="SosaIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Sort Button -->
+                <Control xsi:type="Button" id="SortButton">
+                  <Label resid="ExcelGedcom.Sort.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Sort.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="FilterIcon"/>
+                    <bt:Image size="32" resid="FilterIcon"/>
+                    <bt:Image size="80" resid="FilterIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Indi Info Button -->
+                <Control xsi:type="Button" id="IndiInfoButton">
+                  <Label resid="ExcelGedcom.IndiInfo.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.IndiInfo.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="IndividualInfo"/>
+                    <bt:Image size="32" resid="IndividualInfo"/>
+                    <bt:Image size="80" resid="IndividualInfo"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Chronology Button -->
+                <Control xsi:type="Button" id="ChronologyButton">
+                  <Label resid="ExcelGedcom.Chronology.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Chronology.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="TimeLineIcon"/>
+                    <bt:Image size="32" resid="TimeLineIcon"/>
+                    <bt:Image size="80" resid="TimeLineIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Tree Button -->
+                <Control xsi:type="Button" id="TreeButton">
+                  <Label resid="ExcelGedcom.Tree.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Tree.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="TreeIcon"/>
+                    <bt:Image size="32" resid="TreeIcon"/>
+                    <bt:Image size="80" resid="TreeIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Stats Button -->
+                <Control xsi:type="Button" id="StatsButton">
+                  <Label resid="ExcelGedcom.Stats.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Stats.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="StatsIcon"/>
+                    <bt:Image size="32" resid="StatsIcon"/>
+                    <bt:Image size="80" resid="StatsIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Calendar Conversion Button -->
+                <Control xsi:type="Button" id="CalendarButton">
+                  <Label resid="ExcelGedcom.Calendar.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Calendar.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="CalendarIcon"/>
+                    <bt:Image size="32" resid="CalendarIcon"/>
+                    <bt:Image size="80" resid="CalendarIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Media Button -->
+                <Control xsi:type="Button" id="MediaButton">
+                  <Label resid="ExcelGedcom.Medias.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Medias.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="MediasIcon"/>
+                    <bt:Image size="32" resid="MediasIcon"/>
+                    <bt:Image size="80" resid="MediasIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Sources Button -->
+                <Control xsi:type="Button" id="SourcesButton">
+                  <Label resid="ExcelGedcom.Sources.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Sources.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="SourcesIcon"/>
+                    <bt:Image size="32" resid="SourcesIcon"/>
+                    <bt:Image size="80" resid="SourcesIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+              </Group>
+                            
+              <!-- Gedcom Other group -->
+              <Group id="ExcelGedcom.Other">
+                <Label resid="ExcelGedcom.Tab.Other.Label"/>
+                <Icon>
+                    <bt:Image size="16" resid="ImportIcon"/>
+                    <bt:Image size="32" resid="ImportIcon"/>
+                    <bt:Image size="80" resid="ImportIcon"/>
+                </Icon>
+
+                <!-- Help Button -->
+                <Control xsi:type="Button" id="HelpButton">
+                  <Label resid="ExcelGedcom.Help.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Help.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="HelpIcon"/>
+                    <bt:Image size="32" resid="HelpIcon"/>
+                    <bt:Image size="80" resid="HelpIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- About Button -->
+                <Control xsi:type="Button" id="AboutButton">
+                  <Label resid="ExcelGedcom.About.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.About.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="AboutIcon"/>
+                    <bt:Image size="32" resid="AboutIcon"/>
+                    <bt:Image size="80" resid="AboutIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+
+                <!-- Update Button -->
+                <Control xsi:type="Button" id="UpdateButton">
+                  <Label resid="ExcelGedcom.Update.Label"/>
+                  <Supertip>
+                    <Title resid="ExcelGedcom.Update.Label"/>
+                    <Description resid="TaskpaneButton.Tooltip"/>
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="UpdateIcon"/>
+                    <bt:Image size="32" resid="UpdateIcon"/>
+                    <bt:Image size="80" resid="UpdateIcon"/>
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>buttonAction</FunctionName>
+                  </Action>
+                  <Enabled>false</Enabled>
+                </Control>
+              </Group>
+              <!-- Tab Name -->
+              <Label resid="ExcelGedcom.Tab.Label" />
+            </CustomTab>
+          <!-- Gedcom Tab -->
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <!-- Resources for the addin -->
+    <Resources>
+      <bt:Images>
+        <!-- Ribbon Icons -->
+        <bt:Image id="AboutIcon" DefaultValue="https://localhost:3000/assets/ribbon/about.png"/>
+        <bt:Image id="CalendarIcon" DefaultValue="https://localhost:3000/assets/ribbon/calendar.png"/>
+        <bt:Image id="EditIcon" DefaultValue="https://localhost:3000/assets/ribbon/edit.png"/>
+        <bt:Image id="ErrorIcon" DefaultValue="https://localhost:3000/assets/ribbon/error.png"/>
+        <bt:Image id="ExportIcon" DefaultValue="https://localhost:3000/assets/ribbon/export.png"/>
+        <bt:Image id="FilterIcon" DefaultValue="https://localhost:3000/assets/ribbon/filter_code.png"/>
+        <bt:Image id="HelpIcon" DefaultValue="https://localhost:3000/assets/ribbon/help.png"/>
+        <bt:Image id="ImportIcon" DefaultValue="https://localhost:3000/assets/ribbon/import.png"/>
+        <bt:Image id="IndividualInfo" DefaultValue="https://localhost:3000/assets/ribbon/indi_infos.png"/>
+        <bt:Image id="MediasIcon" DefaultValue="https://localhost:3000/assets/ribbon/medias.png"/>
+        <bt:Image id="SosaIcon" DefaultValue="https://localhost:3000/assets/ribbon/sosa.png"/>
+        <bt:Image id="SourcesIcon" DefaultValue="https://localhost:3000/assets/ribbon/sources.png"/>
+        <bt:Image id="StatsIcon" DefaultValue="https://localhost:3000/assets/ribbon/stats.png"/>
+        <bt:Image id="TimeLineIcon" DefaultValue="https://localhost:3000/assets/ribbon/timeline.png"/>
+        <bt:Image id="TreeIcon" DefaultValue="https://localhost:3000/assets/ribbon/tree.png"/>
+        <bt:Image id="UpdateIcon" DefaultValue="https://localhost:3000/assets/ribbon/update.png"/>
+        <!-- Ribbon Icons -->
+        <bt:Image id="Icon.16x16" DefaultValue="https://localhost:3000/assets/icon-16.png"/>
+        <bt:Image id="Icon.32x32" DefaultValue="https://localhost:3000/assets/icon-32.png"/>
+        <bt:Image id="Icon.80x80" DefaultValue="https://localhost:3000/assets/icon-80.png"/>
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812"/>
+        <bt:Url id="Commands.Url" DefaultValue="https://localhost:3000/commands.html"/>
+        <bt:Url id="Taskpane.Url" DefaultValue="https://localhost:3000/taskpane.html"/>
+        <bt:Url id="Popup.Url" DefaultValue="https://localhost:3000/ImportGEDC.html"/>
+      </bt:Urls>
+      <bt:ShortStrings>
+        <!-- Ribbon Groups -->
+        <bt:String id="ExcelGedcom.ImportExport.Label" DefaultValue="Import / Export"/>
+        <bt:String id="ExcelGedcom.Tab.Label" DefaultValue="Gedcom" />
+        <bt:String id="ExcelGedcom.Tab.Tools.Label" DefaultValue="Outils Généalogie"/>
+        <bt:String id="ExcelGedcom.Tab.Other.Label" DefaultValue="Divers"/>
+        <!-- Ribbon Buttons -->
+        <bt:String id="ExcelGedcom.Import.Label" DefaultValue="Import"/>
+        <bt:String id="ExcelGedcom.Export.Label" DefaultValue="Export"/>
+        <bt:String id="ExcelGedcom.Template.Label" DefaultValue="Gestion des Modèles"/>
+        <bt:String id="ExcelGedcom.Sosa.Label" DefaultValue="Définir le Sosa n°1"/>
+        <bt:String id="ExcelGedcom.Sort.Label" DefaultValue="Tri avancé"/>
+        <bt:String id="ExcelGedcom.IndiInfo.Label" DefaultValue="Fiche Individu"/>
+        <bt:String id="ExcelGedcom.Chronology.Label" DefaultValue="Chronologie"/>
+        <bt:String id="ExcelGedcom.Tree.Label" DefaultValue="Arbre Généalogique"/>
+        <bt:String id="ExcelGedcom.Stats.Label" DefaultValue="Statistiques"/>
+        <bt:String id="ExcelGedcom.Calendar.Label" DefaultValue="Conversion Calendaire"/>
+        <bt:String id="ExcelGedcom.Medias.Label" DefaultValue="Médias"/>
+        <bt:String id="ExcelGedcom.Sources.Label" DefaultValue="Sources"/>
+        <bt:String id="ExcelGedcom.Help.Label" DefaultValue="Aide"/>
+        <bt:String id="ExcelGedcom.About.Label" DefaultValue="A propos"/>
+        <bt:String id="ExcelGedcom.Update.Label" DefaultValue="Mise à jour"/>
+        <!-- -->
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with your sample add-in!"/>
+        <bt:String id="TaskpaneButton.Label" DefaultValue="Show Taskpane"/>
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started."/>
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane"/>
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

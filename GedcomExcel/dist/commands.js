@@ -1,0 +1,2 @@
+Office.onReady((function(e){e.host===Office.HostType.Excel&&Office.ribbon.requestUpdate({tabs:[{id:"ExcelGedcom.Tab",groups:[{id:"ExcelGedcom.ImportExport",controls:[{id:"ExportButton",enabled:!1}]}]}]})})),Office.actions.associate("action",(function(e){var o={type:Office.MailboxEnums.ItemNotificationMessageType.InformationalMessage,message:"Performed action.",icon:"Icon.80x80",persistent:!0};Office.context.mailbox.item.notificationMessages.replaceAsync("action",o),e.completed()}));
+//# sourceMappingURL=commands.js.map
